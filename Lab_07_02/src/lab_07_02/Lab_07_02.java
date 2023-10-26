@@ -6,7 +6,7 @@ public class Lab_07_02 {
     public static void main(String[] args) {
         //displayGrades();
         //displayReversedNumbers();
-        countNumberOccurence();
+        //countNumberOccurence();
     }
 
     public static void displayGrades(){
@@ -77,46 +77,49 @@ public class Lab_07_02 {
 
     public static void countNumberOccurence(){
         Scanner input = new Scanner(System.in);
+        System.out.print("Enter integers between 1 and 100, the input ends at 0, or if there are 100 input numbers: ");
 
         int[] numbers = new int[100];
-        int[] numberCounts = new int[100];
-
-        for(int i = 0; i < numbers.length; i++){
+        for(int i = 0; i < numbers.length; i++){ // put all numbers in single array
             int currentNumber = input.nextInt();
-            if(currentNumber == 0) break;
 
-            if(currentNumber > 100 || currentNumber < 1){
-                System.out.println("Invalid input: numbers cannot be greater than 100 or less than 1");
+            if(currentNumber == 0) break; // stop input at 0
+
+            if(currentNumber > 100 || currentNumber < 1){ // make sure number is between 1 and 100
+                System.out.println("Invalid input: numbers must be between 1 and 100.");
                 return;
             }
+            numbers[i] = currentNumber;
+        }
 
-            if(containsNumber(numbers, currentNumber)){
-                numberCounts[firstOccurence(numbers, currentNumber)]++;
+        int[] uniqueNumbers = new int[100];
+        for(int i = 0, j = 0; numbers[i] != 0; i++){ // store all the unique numbers
+            if(!containsNumber(uniqueNumbers, numbers[i])){
+                uniqueNumbers[j] = numbers[i];
+                j++;
             }
-            else{
-                numbers[i] = currentNumber;
-                numberCounts[i]++;
+        }
+
+        int[] numberCounts = new int[100]; 
+        for(int i = 0; uniqueNumbers[i] != 0; i++){ // count the occurences
+            for(int j = 0; numbers[j] != 0; j++){
+                if(numbers[j] == uniqueNumbers[i]){
+                    numberCounts[i]++;
+                }
             }
         }
 
-        for(int i = 0; numbers[i] != 0; i++){
-            System.out.printf("%d occurs %d %s\n", numbers[i], numberCounts[i], (numberCounts[i] > 1) ? "times": "time");
+        for(int i = 0; uniqueNumbers[i] != 0; i++){ // print the occurences of each number
+            System.out.printf("%d occurs %d %s\n", uniqueNumbers[i] ,numberCounts[i], (numberCounts[i] != 1) ? "times": "time");
         }
-    }
-
-    public static int firstOccurence(int[] numbers, int number){
-        for(int i = 0; i < numbers.length; i++){
-            if(numbers[i] == number)
-                return i;
-        }
-        System.out.println("This array does not contain the requested number.");
-        return -1;
-    }
+    } // End of countNumberOccurence method
 
     public static boolean containsNumber(int[] numbers, int number){
         for(int num : numbers)
             if(num == number) return true;
 
         return false;
-    }
+    } // End of containsNumber method
+
+    
 }
