@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Lab_07_02 {
     public static void main(String[] args) {
-        displayGrades();
+        //displayGrades();
         //displayReversedNumbers();
         //countNumberOccurence();
         //analyzeScores();
-        //displayUniqueNumbers();
+        displayUniqueNumbers();
     }
 
     public static void displayGrades(){
