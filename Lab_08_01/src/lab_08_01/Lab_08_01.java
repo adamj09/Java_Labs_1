@@ -8,7 +8,7 @@ public class Lab_08_01 {
         //averageTest();
         //minimumTest();
         //indexMinimumTest();
-        randomArray();
+        //randomArrayTest();
     }
 
     public static void countSingleDigits(){
@@ -131,7 +131,7 @@ public class Lab_08_01 {
         System.out.printf("\nThe index of the minimum is: %d", indexMinimum(numbers));
     } // end of indexMinimumTest method
 
-    public static void randomArray(){
+    public static void randomArrayTest(){
         int[] originalArray = new int[10];
 
         for(int i = 0; i < originalArray.length; i++){
@@ -139,29 +139,48 @@ public class Lab_08_01 {
         }
 
         // Print enhanced for loop and while loop (A)
-        System.out.println("Original array printed with enhanced for loop: ");
-        for(int number : originalArray){
+        printEnhanceForAndWhile(originalArray);
+
+        // Sum and average (B)
+        printSumAndAverage(originalArray);
+    
+        // Max and min value (C)
+        printMinMax(originalArray);
+
+        // Reverse array (D)
+        printReversed(originalArray);
+
+        // Shuffle array (E)
+        printShuffled(originalArray);
+    } // end of randomArrayTest method
+
+    public static void printEnhanceForAndWhile(int[] array){
+        // Print enhanced for loop and while loop (A)
+        System.out.println("\nOriginal array printed with enhanced for loop: ");
+        for(int number : array){
             System.out.print(number + " ");
         }
 
         System.out.println("\nOriginal array printed with while loop: ");
         int i = 0;
-        while(i < originalArray.length){
-            System.out.print(originalArray[i] + " ");
+        while(i < array.length){
+            System.out.print(array[i] + " ");
             i++;
         }
+    } // end of printEnhanceForAndWhile method
 
-        // Sum and Average (B)
+    public static void printSumAndAverage(int[] array){
         int sum = 0;
-        for(int number : originalArray){
+        for(int number : array){
             sum += number;
         }
-        double average = sum / originalArray.length;
-        System.out.printf("\nSum of original array: %d\nAverage of original array: %.2f\n", sum, average);
-    
-        // Max and min value (C)
-        int maximum = originalArray[0], minimum = originalArray[0];
-        for(int number : originalArray){
+        double average = sum / array.length;
+        System.out.printf("\nSum of original array: %d\nAverage of original array: %.2f", sum, average);
+    } // end of printSumAndAverage method
+
+    public static void printMinMax(int[] array){
+        int maximum = array[0], minimum = array[0];
+        for(int number : array){
             if(number > maximum){
                 maximum = number;
             }
@@ -169,8 +188,43 @@ public class Lab_08_01 {
                 minimum = number;
             }
         }
-        System.out.printf("\nMaximum of original array: %d\nMinimum of original array: %d\n", maximum, minimum);
+        System.out.printf("\nMaximum of original array: %d\nMinimum of original array: %d", maximum, minimum);
+    } // end of printMinMax method
 
-        
-    } // end of randomArray method
+    public static void printReversed(int[] array){
+        int[] reversed = new int[array.length];
+        for(int i = 0, j = array.length - 1; i < array.length && j > 0; i++, j--){ // create reversed array
+            reversed[i] = array[j];
+        }
+
+        System.out.println("\nOriginal array: "); // print original
+        for(int number : array){
+            System.out.print(number + " ");
+        }
+
+        System.out.println("\nReversed array: "); // print reversed
+        for(int number : reversed){
+            System.out.print(number + " ");
+        }
+    } // end of printReversed method
+
+    public static void printShuffled(int[] array){
+        System.out.println("\nOriginal array: "); // print original
+        for(int number : array){
+            System.out.print(number + " ");
+        }
+
+        for(int i = 0; i < array.length / 2; i++){ // create shuffled
+            int j = (int)(Math.random() * array.length);
+            
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
+        System.out.println("\nShuffled array: "); // print shuffled
+        for(int number : array){
+            System.out.print(number + " ");
+        }
+    } // end of printShuffled method
 }
