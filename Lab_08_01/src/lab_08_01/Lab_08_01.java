@@ -8,7 +8,7 @@ public class Lab_08_01 {
         //averageTest();
         //minimumTest();
         //indexMinimumTest();
-        //randomArrayTest();
+        randomArrayTest();
     }
 
     public static void countSingleDigits(){
@@ -110,8 +110,7 @@ public class Lab_08_01 {
                 minimum = number;
             }
         }
-    
-        for(int i = 0; i < array.length; i++){ // find index of minimum
+        for(int i = 0; i < array.length; i++){ // find first index of minimum
             if(array[i] == minimum){
                 return i;
             }
