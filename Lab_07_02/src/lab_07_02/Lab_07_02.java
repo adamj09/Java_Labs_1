@@ -85,7 +85,7 @@ public class Lab_07_02 {
         for(int i = original.length - 1, j = 0; i >= 0 && j < original.length; i--, j++){
             reversed[j] = original[i];
         }
-
+        
         return reversed;
     } // End of reverseNumbers method
 
