@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Lab_08_02 {
     public static void main(String[] args) {
         //System.out.println("Random number (excluding 5, 6, and 8): " + getRandom(5, 6, 8)); // Question 1
-        gcdTest();
+        //gcdTest();
+        eliminateDuplicatesTest();
     }
 
     public static int getRandom(int... excluded){
@@ -55,12 +56,64 @@ public class Lab_08_02 {
 
     public static void gcdTest(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter 5 numbers: ");
+        System.out.print("Enter 5 integers: ");
         
         int[] numbers = new int[5];
         for(int i = 0; i < numbers.length; i++){
             numbers[i] = input.nextInt();
         }
-        System.out.printf("The GCD of these numbers is: %d", gcd(numbers));
-    }
+        System.out.printf("The GCD of these integers is: %d", gcd(numbers));
+    } // end of gcdTest method
+
+    public static int[] eliminateDuplicates(int[] numbers){
+        int[] uniqueNumbers = new int[numbers.length];
+
+        for(int i = 0, j = 0; i < numbers.length; i++){ // store the unique numbers in an array
+            boolean containsNum = false; // check if number is already present in unique numbers
+            for(int number : uniqueNumbers){
+                if(number == numbers[i]){ 
+                    containsNum = true;
+                }
+            }
+
+            if(!containsNum){ // if number isn't present, add to unique numbers
+                uniqueNumbers[j] = numbers[i];
+                j++;
+            }
+        }
+
+        // Trim trailing zeros (leave 1 zero if there's a zero as an input number)
+        boolean containsZero = false;
+        for(int number : numbers){
+            if(number == 0){ 
+                containsZero = true;
+            }
+        }
+        int newLength = uniqueNumbers.length;
+        while(uniqueNumbers[newLength - 1] == 0 && !containsZero){ 
+            newLength--;
+        }
+        int[] trimmedUnique = new int[newLength];
+        System.arraycopy(uniqueNumbers, 0, trimmedUnique, 0, newLength);
+
+        return trimmedUnique;
+    } // end of eliminateDuplicates method
+
+    public static void eliminateDuplicatesTest(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter 10 integers: ");
+
+        int[] numbers = new int[10];
+        for(int i = 0; i < numbers.length; i++){
+            numbers[i] = input.nextInt();
+        }
+
+        int[] uniqueNumbers = eliminateDuplicates(numbers);
+
+        // print unique numbers
+        System.out.print("\nThe unique numbers are: ");
+        for(int i = 0; i < uniqueNumbers.length; i++){
+            System.out.print(uniqueNumbers[i] + " ");
+        }
+    } // end of eliminateDuplicatesTest method
 }
