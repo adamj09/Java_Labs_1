@@ -6,7 +6,9 @@ public class Lab_08_02 {
     public static void main(String[] args) {
         //System.out.println("Random number (excluding 5, 6, and 8): " + getRandom(5, 6, 8)); // Question 1
         //gcdTest();
-        eliminateDuplicatesTest();
+        //eliminateDuplicatesTest();
+        //equalsTest();
+
     }
 
     public static int getRandom(int... excluded){
@@ -116,4 +118,41 @@ public class Lab_08_02 {
             System.out.print(uniqueNumbers[i] + " ");
         }
     } // end of eliminateDuplicatesTest method
+
+    public static boolean equals(int[] array1, int[] array2){
+        if(array1.length != array2.length){ // first check if arrays are same length
+            return false;
+        }
+
+        for(int i = 0; i < array1.length; i++){ // then check if contents of each array are same
+            if(array1[i] != array2[i]){
+                return false;
+            }
+        }
+
+        return true;
+    } // end of equals method
+
+    public static void equalsTest(){
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the size of both arrays: ");
+        int arrayLength = input.nextInt(); // length for both arrays
+
+        System.out.print("\nEnter array 1: "); // get first array from user
+        int[] array1 = new int[arrayLength];
+        for(int i = 0; i < arrayLength; i++){
+            array1[i] = input.nextInt();
+        }
+
+        System.out.print("\nEnter array 2: "); // get second array from user
+        int[] array2 = new int[arrayLength];
+        for(int i = 0; i < arrayLength; i++){
+            array2[i] = input.nextInt();
+        }
+        
+        System.out.print("\n" + (equals(array1, array2) ? "These arrays are identical." : "These arrays are not identical."));
+    } // end of equalsTest method
+
+    
 }
