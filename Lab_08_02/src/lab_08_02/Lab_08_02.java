@@ -36,7 +36,6 @@ public class Lab_08_02 {
         }
 
         int previousGcd = gcd;
-
         for(int i = 2; i < numbers.length; i++){ // find the GDC of the previous GDC and the next number
             gcd = Math.min(previousGcd, numbers[i]);
             while(previousGcd % gcd != 0 || numbers[i] % gcd != 0){
