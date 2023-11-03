@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Lab_08_02 {
     public static void main(String[] args) {
         //System.out.println("Random number (excluding 5, 6, and 8): " + getRandom(5, 6, 8)); // Question 1
-        //gcdTest();
-        //eliminateDuplicatesTest();
-        //equalsTest();
-
+        //gcdTest(); // Question 2
+        //eliminateDuplicatesTest(); // Question 3
+        //equalsTest(); // Question 4
+        cardPicksUntilSum24(); // Question 5
     }
 
     public static int getRandom(int... excluded){
@@ -84,17 +84,22 @@ public class Lab_08_02 {
             }
         }
 
-        // Trim trailing zeros (leave 1 zero if there's a zero as an input number)
+        // Trim trailing zeros
+        int newLength = uniqueNumbers.length;
+        while(uniqueNumbers[newLength - 1] == 0){ 
+            newLength--;
+        }
+
         boolean containsZero = false;
         for(int number : numbers){
             if(number == 0){ 
                 containsZero = true;
             }
         }
-        int newLength = uniqueNumbers.length;
-        while(uniqueNumbers[newLength - 1] == 0 && !containsZero){ 
-            newLength--;
+        if(containsZero){ // leave 1 zero if there's a zero as an input number
+            newLength++;
         }
+
         int[] trimmedUnique = new int[newLength];
         System.arraycopy(uniqueNumbers, 0, trimmedUnique, 0, newLength);
 
@@ -154,5 +159,54 @@ public class Lab_08_02 {
         System.out.print("\n" + (equals(array1, array2) ? "These arrays are identical." : "These arrays are not identical."));
     } // end of equalsTest method
 
-    
+    public static int[] pick4RandomCards(){
+        int[] picks = new int[4];
+
+        int i = 0;
+        while(i < picks.length){
+            int pick = (int)(Math.random() * 13 + 1); // pick new card
+
+            boolean containsPick = false;
+            for(int uniquePicks : picks){ // check if pick is unique
+                if(uniquePicks == pick){
+                    containsPick = true;
+                    break;
+                }
+            }
+
+            if(!containsPick){ // if this pick is unique, add it to picks
+                picks[i] = pick;
+                i++;
+            }
+        }
+        return picks;
+    }
+
+    public static int sum(int... numbers){
+        int sum = 0;
+        for(int number : numbers){
+            sum += number;
+        }
+        return sum;
+    }
+
+    public static void cardPicksUntilSum24(){
+        int sum = 0, iterationCount = 0;
+        int[] winningPick = new int[4]; // pick cards and get sum
+        while(sum != 24){
+            winningPick = pick4RandomCards();
+            sum = sum(winningPick);
+            iterationCount++;
+        }
+        
+        // Display number of picks it took to get a sum of 24
+        System.out.print("Number of times picked until a sum of 24 was obtained: " + iterationCount);
+
+        // Display winning card pick
+        String[] cardNames = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+        System.out.print("\nThe pick was: ");
+        for(int card : winningPick){
+            System.out.print(cardNames[card - 1] + " ");
+        }
+    }   
 }
