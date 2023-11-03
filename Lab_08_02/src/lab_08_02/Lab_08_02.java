@@ -8,7 +8,7 @@ public class Lab_08_02 {
         //gcdTest(); // Question 2
         //eliminateDuplicatesTest(); // Question 3
         //equalsTest(); // Question 4
-        //cardPicksUntilSum24(); // Question 5
+        cardPicksUntilSum24(); // Question 5
     }
 
     public static int getRandom(int... excluded){
