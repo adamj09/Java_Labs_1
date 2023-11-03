@@ -8,7 +8,7 @@ public class Lab_08_02 {
         //gcdTest(); // Question 2
         //eliminateDuplicatesTest(); // Question 3
         //equalsTest(); // Question 4
-        cardPicksUntilSum24(); // Question 5
+        //cardPicksUntilSum24(); // Question 5
     }
 
     public static int getRandom(int... excluded){
@@ -180,7 +180,7 @@ public class Lab_08_02 {
             }
         }
         return picks;
-    }
+    } // end of pick4RandomCards method
 
     public static int sum(int... numbers){
         int sum = 0;
@@ -188,25 +188,25 @@ public class Lab_08_02 {
             sum += number;
         }
         return sum;
-    }
+    } // end of sum method
 
     public static void cardPicksUntilSum24(){
         int sum = 0, iterationCount = 0;
-        int[] winningPick = new int[4]; // pick cards and get sum
+        int[] pick = new int[4]; // pick cards and get sum
         while(sum != 24){
-            winningPick = pick4RandomCards();
-            sum = sum(winningPick);
+            pick = pick4RandomCards();
+            sum = sum(pick);
             iterationCount++;
         }
         
         // Display number of picks it took to get a sum of 24
-        System.out.print("Number of times picked until a sum of 24 was obtained: " + iterationCount);
+        System.out.print("Number of times cards were picked until a sum of 24 was obtained: " + iterationCount);
 
         // Display winning card pick
         String[] cardNames = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
         System.out.print("\nThe pick was: ");
-        for(int card : winningPick){
+        for(int card : pick){
             System.out.print(cardNames[card - 1] + " ");
         }
-    }   
+    } // end of cardPicksUntilSum24 method
 }
