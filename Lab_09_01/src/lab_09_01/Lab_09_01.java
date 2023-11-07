@@ -5,11 +5,7 @@ import java.util.Scanner;
 public class Lab_09_01 {
     public static void main(String[] args) {
         //hasFourConsecutiveTest(); // Question 1
-        int[] test = {1, 2, 3, 4, 5}, test2 = {1, 2, 3, 4, 5};
-        int[] test3 = mergeSorted(test, test2);
-        for(int i = 0; i < test3.length; i++){
-            System.out.print(test3[i] + " ");
-        }
+        mergeSortedTest();
     }
 
     public static boolean hasFourConsecutive(int... numbers){
@@ -41,25 +37,61 @@ public class Lab_09_01 {
     } // end of hasFourConsecutiveTest method
 
     public static int[] mergeSorted(int[] array1, int[] array2){
-        array1 = selectSortInc(array1);
-        array2 = selectSortInc(array2);
+        int[] longerArray = (Math.max(array1.length, array2.length) == array1.length) ? selectSortInc(array1) : selectSortInc(array2);
+        int[] shorterArray = (Math.min(array1.length, array2.length) == array2.length) ? selectSortInc(array2) : selectSortInc(array1);
 
-        int newLength = array1.length + array2.length;
-        int[] merged = new int[newLength];
+        int[] merged = new int[array1.length + array2.length];
+        int mergedIndex = 0, longIndex = 0, shortIndex = 0;
 
-        for(int i = 0; i < newLength; i += 2){
-            if(array1[i] < array2[i]){
-                merged[i] = array1[i];
-                merged[i + 1] = array2[i];
+        while(shortIndex < shorterArray.length){ // merge and sort at same time
+            if(shorterArray[shortIndex] < longerArray[longIndex]){ // number in short array comes first
+                merged[mergedIndex++] = shorterArray[shortIndex++];
             }
-            else{
-                merged[i] = array2[i];
-                merged[i + 1] = array1[i];
+            else{ // number in long array comes first
+                merged[mergedIndex++] = longerArray[longIndex++];
             }
+        }
+        while(longIndex < longerArray.length){ // fill remaining with values from longer array
+            merged[mergedIndex++] = longerArray[longIndex++];
         }
 
         return merged;
     } // end of merge method
+
+    public static void mergeSortedTest(){
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the size of array 1: ");
+        int[] array1 = new int[input.nextInt()];
+        System.out.print("Enter the size of array 2: ");
+        int[] array2 = new int[input.nextInt()];
+
+        System.out.print("Enter the values for array 1: ");
+        for(int i = 0; i < array1.length; i++){
+            array1[i] = input.nextInt();
+        }
+
+        System.out.print("Enter the values for array 2: ");
+        for(int i = 0; i < array2.length; i++){
+            array2[i] = input.nextInt();
+        }
+
+        System.out.print("Array 1 is: ");
+        for(int num : array1){
+            System.out.print(num + " ");
+        }
+
+        System.out.print("\nArray 2 is: ");
+        for(int num : array2){
+            System.out.print(num + " ");
+        }
+
+        int[] merged = mergeSorted(array1, array2);
+        System.out.print("\nThe merged array is: ");
+        for(int num : merged){
+            System.out.print(num + " ");
+        }
+    }
 
     public static int[] selectSortInc(int[] array){
         int[] sorted = new int[array.length];
