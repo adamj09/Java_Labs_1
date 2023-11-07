@@ -8,7 +8,7 @@ public class Lab_09_01 {
         //mergeSortedTest(); // Question 2
         //sortStringTest(); // Question 3
         //arrayExercise(); // Question 4
-
+        sumColumnTest();
     }
 
     public static boolean hasFourConsecutive(int... numbers){
@@ -184,5 +184,28 @@ public class Lab_09_01 {
                 "\nMaximum of the values in the array: %d\nMinimum of the values in the array: %d", sum, average, max, min);
     } // end of arrayExercise method
 
-    
+    public static double sumColumn(double[][] matrix, int columnIndex){
+        double sum = 0;
+        for(int rowIndex = 0; rowIndex < matrix.length; rowIndex++){
+            sum += matrix[rowIndex][columnIndex];
+        }
+        return sum;
+    } // end of sumColumn method
+
+    public static void sumColumnTest(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a 3-by-4 matrix row by row: ");
+        double[][] matrix = new double[3][4];
+
+        for(int row = 0; row < matrix.length; row++){
+            for(int column = 0; column < matrix[row].length; column++){
+                matrix[row][column] = input.nextDouble();
+            }
+        }
+
+        System.out.println("Sum of the elements at each column: ");
+        for(int column = 0; column < matrix[0].length; column++){
+            System.out.printf("Column %d: %.2f\n", column, sumColumn(matrix, column));
+        }
+    } // end of sumColumnTest method
 }
