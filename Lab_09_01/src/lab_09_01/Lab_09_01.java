@@ -8,7 +8,7 @@ public class Lab_09_01 {
         //mergeSortedTest(); // Question 2
         //sortStringTest(); // Question 3
         //arrayExercise(); // Question 4
-        sumColumnTest();
+        sumColumnTest(); // Question 5
     }
 
     public static boolean hasFourConsecutive(int... numbers){
