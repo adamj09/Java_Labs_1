@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Lab_09_01 {
     public static void main(String[] args) {
         //hasFourConsecutiveTest(); // Question 1
-
+        int[] test = {1, 2, 3, 4, 5}, test2 = {1, 2, 3, 4, 5};
+        int[] test3 = mergeSorted(test, test2);
+        for(int i = 0; i < test3.length; i++){
+            System.out.print(test3[i] + " ");
+        }
     }
 
     public static boolean hasFourConsecutive(int... numbers){
@@ -43,8 +47,15 @@ public class Lab_09_01 {
         int newLength = array1.length + array2.length;
         int[] merged = new int[newLength];
 
-        for(int i = 0; i < newLength; i++){
-            
+        for(int i = 0; i < newLength; i += 2){
+            if(array1[i] < array2[i]){
+                merged[i] = array1[i];
+                merged[i + 1] = array2[i];
+            }
+            else{
+                merged[i] = array2[i];
+                merged[i + 1] = array1[i];
+            }
         }
 
         return merged;
