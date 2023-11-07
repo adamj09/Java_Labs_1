@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class Lab_09_01 {
     public static void main(String[] args) {
         //hasFourConsecutiveTest(); // Question 1
-        mergeSortedTest();
+        //mergeSortedTest(); // Question 2
+        //sortStringTest(); // Question 3
+        //arrayExercise(); // Question 4
+
     }
 
     public static boolean hasFourConsecutive(int... numbers){
@@ -37,8 +40,8 @@ public class Lab_09_01 {
     } // end of hasFourConsecutiveTest method
 
     public static int[] mergeSorted(int[] array1, int[] array2){
-        int[] longerArray = (Math.max(array1.length, array2.length) == array1.length) ? selectSortInc(array1) : selectSortInc(array2);
-        int[] shorterArray = (Math.min(array1.length, array2.length) == array2.length) ? selectSortInc(array2) : selectSortInc(array1);
+        int[] longerArray = (Math.max(array1.length, array2.length) == array1.length) ? sort(array1) : sort(array2);
+        int[] shorterArray = (Math.min(array1.length, array2.length) == array2.length) ? sort(array2) : sort(array1);
 
         int[] merged = new int[array1.length + array2.length];
         int mergedIndex = 0, longIndex = 0, shortIndex = 0;
@@ -91,9 +94,9 @@ public class Lab_09_01 {
         for(int num : merged){
             System.out.print(num + " ");
         }
-    }
+    } // end of mergeSortedTest method
 
-    public static int[] selectSortInc(int[] array){
+    public static int[] sort(int[] array){
         int[] sorted = new int[array.length];
         for(int i = 0; i < array.length; i++){
             // find index of minimum value from i onwards
@@ -111,4 +114,75 @@ public class Lab_09_01 {
         }
         return sorted;
     } // end of selectSortInc method
+
+    public static String sort(String string){
+        char[] sorted = new char[string.length()], unsorted = new char[string.length()];
+
+        for(int i = 0; i < string.length(); i++){ // convert string to array
+            unsorted[i] = string.charAt(i);
+        }
+
+        for(int i = 0; i < unsorted.length; i++){
+            // find index of minimum value from i onwards
+            int minIndex = i;
+            for(int j = i; j < unsorted.length; j++){
+                if(unsorted[minIndex] > unsorted[j]){
+                    minIndex = j;
+                }
+            }
+
+            // add min to sorted and swap number in array
+            char temp = unsorted[i];
+            sorted[i] = unsorted[minIndex];
+            unsorted[minIndex] = temp;
+        }
+
+        String sortedString = "";
+        for(int i = 0; i < sorted.length; i++){ // convert array back to string
+            sortedString += sorted[i];
+        }       
+
+        return sortedString; // convert array back to string
+    } // end of sort method
+
+    public static void sortStringTest(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String unsorted = input.nextLine();
+
+        String sorted = sort(unsorted);
+
+        System.out.print("The sorted string: " + sorted);
+    } // end of sortStringTest method
+
+    public static void arrayExercise(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the size for the array: ");
+        int[] numbers = new int[input.nextInt()];
+
+        System.out.print("Enter the array: ");
+        for(int i = 0; i < numbers.length; i++){
+            numbers[i] = input.nextInt();
+        }
+        // print array, and calculate sum, max, min, average
+        System.out.print("\nThe array entered: ");
+        int sum = 0, max = numbers[0], min = numbers[0];
+        for(int number : numbers){
+            System.out.print(number + " ");
+            sum += number;
+
+            if(number > max){
+                max = number;
+            }
+            if(number < min){
+                min = number;
+            }
+        }
+        double average = (double)sum / numbers.length;
+        // print all requested data
+        System.out.printf("\nSum of the values in the array: %d\nAverage of the values in the array: %.2f" +
+                "\nMaximum of the values in the array: %d\nMinimum of the values in the array: %d", sum, average, max, min);
+    } // end of arrayExercise method
+
+    
 }
