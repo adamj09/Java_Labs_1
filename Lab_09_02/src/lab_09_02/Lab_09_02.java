@@ -10,7 +10,7 @@ public class Lab_09_02 {
 
         //sortThreeIntegers(); // 3 3.1 question 4
 
-        lottery(); // 4 3.2 question 4
+        //lottery(); // 4 3.2 question 4
 
         //hexToBinary(); // 5 4.1 question 4
 
@@ -84,24 +84,24 @@ public class Lab_09_02 {
     } // End of sortThreeIntegers method
 
     public static void lottery(){
-        final int NUMBER_DIGITS = 4;
+        final int DIGIT_COUNT = 4;
         // Get user's guess
         Scanner input = new Scanner(System.in);
-        System.out.printf("Enter a %d-digit integer as your lottery number guess: ", NUMBER_DIGITS);
+        System.out.printf("Enter a %d-digit integer as your lottery number guess: ", DIGIT_COUNT);
 
         int guessNum;
         do{
             guessNum = input.nextInt();
-            if((guessNum + "").length() == NUMBER_DIGITS){
+            if((guessNum + "").length() == DIGIT_COUNT){
                 break;
             }
-            System.out.printf("Invalid guess, number must have %d digits. Guess again.\n", NUMBER_DIGITS);
+            System.out.printf("Invalid guess, number must have %d digits. Guess again.\n", DIGIT_COUNT);
         } while(true);
-        int winNum = (int)(Math.random() * (int)Math.pow(10, NUMBER_DIGITS));
+        int winNum = (int)(Math.random() * (int)Math.pow(10, DIGIT_COUNT));
 
         // Extract Digits
-        int[] guessDigits = new int[NUMBER_DIGITS];
-        int[] winDigits = new int[NUMBER_DIGITS];
+        int[] guessDigits = new int[DIGIT_COUNT];
+        int[] winDigits = new int[DIGIT_COUNT];
         for(int i = 0; i < guessDigits.length; i++){
             guessDigits[i] = (guessNum / (int)Math.pow(10, i)) % 10;
             winDigits[i] = (winNum / (int)Math.pow(10, i)) % 10;
@@ -109,23 +109,27 @@ public class Lab_09_02 {
 
         // Check prize user won
         System.out.println("The winning number is: " + winNum);
-        if(guessNum == winNum){ // The guess matches exactly the lottery number
-            System.out.println("You won $10,000!");
-            return;
+
+        int count = 0;
+        for(int i = 0; i < winDigits.length; i++){
+            for(int j = 0; j < guessDigits.length; j++){
+                if(winDigits[i] == guessDigits[j]){ // Check if all digits match all digits in the lottey number
+                    count++;
+                }
+            }
         }
 
-        for(int i = 0; i < guessDigits.length; i++){
-            // Check if all digits match at least one digit in the lottey number
-            if(true){
-                System.out.println("You won $3,000!");
-            }
-            // Check if only a single digit matches a digit in the lottery number
-            else if(true){
-                System.out.println("You won $1,000!");
-            }
-            else{
-                System.out.println("You lost!");
-            }
+        if(guessNum == winNum){ // The guess matches exactly the lottery number
+            System.out.println("You won $10,000!");
+        }
+        else if(count < DIGIT_COUNT && count > 0){
+            System.out.println("You won $1,000!"); // if all digits match all digits in the lottey number (in no particular order)
+        }
+        else if(count >= DIGIT_COUNT){
+            System.out.println("You won $3,000!"); // if digit matches a digit in the lottery number
+        }
+        else{
+            System.out.println("You lost!");
         }
     } // End of lottery method
 
