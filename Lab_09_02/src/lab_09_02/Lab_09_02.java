@@ -14,7 +14,7 @@ public class Lab_09_02 {
 
         //hexToBinary(); // 5 4.1 question 4
 
-        findCharTest(); // 6 4.2 question 4
+        //compareStringsTest(); // 6 4.2 question 2
 
         //countSignsAndAverage(); // 7 5.1 question 1
 
@@ -151,7 +151,7 @@ public class Lab_09_02 {
                 }
             }
             if(index == hexDigits.length){
-                System.out.println("Invalid input, must be a valid hexadecimal digit.");
+                System.out.println("Invalid input; must be a valid hexadecimal digit.");
                 continue;
             }
             break;
@@ -160,66 +160,57 @@ public class Lab_09_02 {
         System.out.println("The corresponding binary value is: " + binValues[index]);
     } // End of hexToBinary method
 
-    public static void findCharTest(){
-        // Get string and char to search for from user
+    public static void compareStringsTest(){
+        // Get two string from user
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter a string, and a letter to search for: ");
-        String string = input.nextLine();
-        char letter = input.nextLine().charAt(0);
+        System.out.print("Enter number of pairs of strings to compare: ");
+        int pairs = input.nextInt();
+        String[] strings = new String[pairs * 2];
+
+        System.out.printf("Enter %d pairs of strings to compare: ", pairs);
         
-        // Display information about the char's position in the string
-        if(string.indexOf(letter) < 0){
-            System.out.println("The character is not present in the string.");
+        for(int i = 0; i < strings.length; i++){
+            strings[i] = input.next();
         }
-        else{
-            System.out.println("The character first occurs at index " + string.indexOf(letter) +
-                    "\nThe character last occurs at index " + string.lastIndexOf(letter) +
-                    "\nThe character last occurs (using the lastIndexOf(s) method) at index: " + string.lastIndexOf(letter + "")
-            );
-            System.out.println(((string.indexOf(letter, string.length() / 2) >= 0) ? 
-                    "The character is present in the second half of the string" : "\nThe character is not present in the second half of the string.")
-            );
-            System.out.println(((string.lastIndexOf(letter, string.length() / 2) >= 0) ? 
-                    "In the first half of the string, the last occurance of the character is at index " + 
-                    string.lastIndexOf(letter, string.length() / 2) : 
-                    "The character is not present in the first half of the string.")
-            );
-            System.out.println(((string.lastIndexOf(letter, string.length() / 2) >= 0) ? 
-                    "In the first half of the string, the last occurance of the character (using the lastIndexOf(s, int) method) is at index " +
-                    string.lastIndexOf(letter + "", string.length() / 2) : 
-                    "The character is not present in the first half of the string.")
-            );
+
+        // Test string methods
+        for(int i = 0; i < strings.length - 1; i += 2){
+            System.out.printf("\n\nPair %d: ", i / 2);
+            System.out.printf("\nString %d: ", i);
+            System.out.printf("\nis the same as string %d: " + strings[i].equals(strings[i + 1]), i + 1);
+            System.out.printf("\nis the same as string %d, ignoring case: " + strings[i].equalsIgnoreCase(strings[i + 1]), i + 1);
+            System.out.printf("\nis greater than or equal to string %d: " + (strings[i].compareTo(strings[i + 1]) >= 0), i + 1);
+            System.out.printf("\nis greater than or equal to string %d, ignoring case: " + (strings[i].compareToIgnoreCase(strings[i + 1]) >= 0), i);
+            System.out.printf("\nstarts with the same letter as string %d: " + strings[i].startsWith(strings[i + 1].charAt(0) + ""), i);
+            System.out.printf("\nends with the same letter as string %d: " + strings[i].endsWith(strings[i + 1].charAt(strings[i + 1].length() - 1) + "\n"), i);
         }
-    } // End of findCharTest method
+    } // End of compareStringsTest method
     
     public static void countSignsAndAverage(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter multiple integers, 0 marks the end of the input: ");
-        // Initial variables
-        int number = input.nextInt(), numPositives = 0, numNegatives = 0, count = 0, total = 0;
-        
-        // Get each consecutive number and update necessary values
-        while(number != 0){
-            count++;
-            total += number;
+        System.out.print("Enter the number of integers to evaluate: ");
+        int[] numbers = new int[input.nextInt()];
+
+        System.out.print("Enter the integers to evaluate: ");
+        for(int i = 0; i < numbers.length; i++){
+            numbers[i] = input.nextInt();
+        }
+
+        int positiveCount = 0, negativeCount = 0, sum = 0;
+        for(int number : numbers){
+            sum += number;
             
             if(number > 0){
-                numPositives++;
+                positiveCount++;
             }
             else{
-                numNegatives++;
+                negativeCount++;
             }
-            
-            number = input.nextInt();
         }
         
-        if(count == 0){ // The user input 0 as their first number
-            System.out.println("Invalid input: no integers.");
-        }
-        else{ // Output all the information collected from the loop above
-            System.out.printf("Number of positives: %d\nNumber of negatives: %d\nSum of integers: %d\nAverage of integers: %.2f\n",
-            numPositives, numNegatives, total, (double)total / (double)count);
-        }
+        // Output all the information collected from the loop above
+        System.out.printf("Number of positives: %d\nNumber of negatives: %d\nSum of integers: %d\nAverage of integers: %.2f\n",
+        positiveCount, negativeCount, sum, (double)sum / (double)numbers.length);
     } // End of countSignsAndAverage method
 
     public static void smallestFactorsOfInteger(){
