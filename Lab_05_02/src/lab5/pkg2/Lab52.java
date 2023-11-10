@@ -6,13 +6,13 @@ public class Lab52 {
     public static void main(String[] args) {
         //smallestNumber();
         //largestNumber();
-        //smallestFactorsOfInteger();
+        smallestFactorsOfInteger();
         //patternA();
         //patternB();
         //patternC();
         //patternD();
         //pyramidPattern();
-        reverseString();
+        //reverseString();
     }
     
     public static void smallestNumber(){

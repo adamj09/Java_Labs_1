@@ -23,7 +23,7 @@ public class Lab_09_02 {
         //smallestFactorsOfIntegerFor(); // 9 6.1 question 3
         //smallestFactorsOfIntegerDoWhile(); // 9 6.1 question 3
 
-        //displaySortedNumbers(); // 10 6.2 question 5
+        displaySortedNumbers(2, 3, 1); // 10 6.2 question 5
     }
 
     public static void productOfDigitsInInteger(){
@@ -150,12 +150,8 @@ public class Lab_09_02 {
                     break;
                 }
             }
-            if(index == hexDigits.length){
-                System.out.println("Invalid input; must be a valid hexadecimal digit.");
-                continue;
-            }
-            break;
-        } while(true);
+            System.out.println("Invalid input; must be a valid hexadecimal digit.");
+        } while(index == hexDigits.length);
 
         System.out.println("The corresponding binary value is: " + binValues[index]);
     } // End of hexToBinary method
@@ -215,133 +211,143 @@ public class Lab_09_02 {
 
     public static void smallestFactorsOfInteger(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter an integer: ");
-        int number = input.nextInt();
-        
-        if(number <= 0){ // Make sure the input is a positive number
+        int number;
+        do{
+            System.out.print("Enter an integer: ");
+            if((number = input.nextInt()) > 0){
+                break;
+            }
             System.out.println("Invalid input: must enter an integer greater than 0!");
+        } while(true);
+
+        int[] factors = new int[number / 2];
+        int originalNumber = number;
+        int factor = 2, i = 0;
+        while(i < factors.length && factor <= number){ // Stop when factor is equal to number
+            if(number % factor == 0){ // Check if it's a factor and add to list if so
+                number /= factor; // Divide number by the factor (for next iteration)
+                factors[i] = factor;
+                i++;
+            }
+            else{
+                factor++; // Number is not a factor, so skip it
+            }
         }
-        else{
-            String message = "The smallest factors of " + number + ": ";
-            
-            int factor = 2, factorCount = 0;
-            while(factor <= number){ // Stop when factor is equal to number
-                if(number % factor == 0){ // Check if it's a factor and add to list if so
-                    if(factorCount > 0){ // Comma and space before each number (except for the first)
-                        message += ", ";
+
+        if(factors[0] == 1){ // The input is a prime number
+            System.out.println("This is a prime number; it has no factors other than 1 and itself.");
+        }
+        else{ // Print factors found from input
+            System.out.print("Factors of " + originalNumber + ": ");
+            for(int j = 0; j < factors.length && factors[j] != 0; j++){
+                System.out.print(factors[j]);
+
+                if(j < factors.length - 1){ // add comma after each factor except last
+                    if(factors[j + 1] != 0){
+                        System.out.print(", ");
                     }
-                    number /= factor; // Divide number by the factor (for next iteration)
-                    message += factor;
-                    factorCount++;
                 }
-                else{
-                    factor++; // If the number is not a factor, skip it
-                }
-            }
-            
-            if(factorCount == 1){ // The input is a prime number
-                System.out.println("This is a prime number; it has no factors other than 1 and itself.");
-            }
-            else{ // Print factors found from input
-                System.out.println(message);
             }
         }
     } // End of factorsOfInteger method
 
     public static void smallestFactorsOfIntegerFor(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter an integer: ");
-        int number = input.nextInt();
-        
-        if(number <= 0){ // Make sure the input is a positive number
+        int number;
+        do{
+            System.out.print("Enter an integer: ");
+            if((number = input.nextInt()) > 0){
+                break;
+            }
             System.out.println("Invalid input: must enter an integer greater than 0!");
+        } while(true);
+
+        int[] factors = new int[number / 2];
+        int originalNumber = number;
+        for(int factor = 2, i = 0; i < factors.length && factor <= number;){ // Stop when factor is equal to number
+            if(number % factor == 0){ // Check if it's a factor and add to list if so
+                number /= factor; // Divide number by the factor (for next iteration)
+                factors[i] = factor;
+                i++;
+            }
+            else{
+                factor++; // Number is not a factor, so skip it
+            }
         }
-        else{
-            String message = "The smallest factors of " + number + ": ";
-            
-            int factorCount = 0;
-            for(int factor = 2; factor <= number;){ // Stop when factor is equal to number
-                if(number % factor == 0){ // Check if it's a factor and add to list if so
-                    if(factorCount > 0){ // Comma and space before each number (except for the first)
-                        message += ", ";
+
+        if(factors[0] == 1){ // The input is a prime number
+            System.out.println("This is a prime number; it has no factors other than 1 and itself.");
+        }
+        else{ // Print factors found from input
+            System.out.print("Factors of " + originalNumber + ": ");
+            for(int i = 0; i < factors.length && factors[i] != 0; i++){
+                System.out.print(factors[i]);
+
+                if(i < factors.length - 1){ // add comma after each factor except last
+                    if(factors[i + 1] != 0){
+                        System.out.print(", ");
                     }
-                    number /= factor; // Divide number by the factor (for next iteration)
-                    message += factor;
-                    factorCount++;
                 }
-                else{
-                    factor++; // If the number is not a factor, skip it
-                }
-            }
-            
-            if(factorCount == 1){ // The input is a prime number
-                System.out.println("This is a prime number; it has no factors other than 1 and itself.");
-            }
-            else{ // Print factors found from input
-                System.out.println(message);
             }
         }
     } // End of smallestFactorsOfIntegerFor method
 
     public static void smallestFactorsOfIntegerDoWhile(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter an integer: ");
-        int number = input.nextInt();
-        
-        if(number <= 0){ // Make sure the input is a positive number
+        int number;
+        do{
+            System.out.print("Enter an integer: ");
+            if((number = input.nextInt()) > 0){
+                break;
+            }
             System.out.println("Invalid input: must enter an integer greater than 0!");
+        } while(true);
+
+        int[] factors = new int[number / 2];
+        int originalNumber = number;
+        int factor = 2, i = 0;
+        do{
+            if(number % factor == 0){ // Check if it's a factor and add to list if so
+                number /= factor; // Divide number by the factor (for next iteration)
+                factors[i] = factor;
+                i++;
+            }
+            else{
+                factor++; // Number is not a factor, so skip it
+            }
+        } while(i < factors.length && factor <= number); // Stop when factor is equal to number
+
+        if(factors[0] == 1){ // The input is a prime number
+            System.out.println("This is a prime number; it has no factors other than 1 and itself.");
         }
-        else{
-            String message = "The smallest factors of " + number + ": ";
-            
-            int factor = 2, factorCount = 0;
-            do { // Stop when factor is equal to number
-                if(number % factor == 0){ // Check if it's a factor and add to list if so
-                    if(factorCount > 0){ // Comma and space before each number (except for the first)
-                        message += ", ";
+        else{ // Print factors found from input
+            System.out.print("Factors of " + originalNumber + ": ");
+            for(int j = 0; i < factors.length && factors[j] != 0; j++){
+                System.out.print(factors[j]);
+
+                if(i < factors.length - 1){ // add comma after each factor except last
+                    if(factors[j + 1] != 0){
+                        System.out.print(", ");
                     }
-                    number /= factor; // Divide number by the factor (for next iteration)
-                    message += factor;
-                    factorCount++;
                 }
-                else{
-                    factor++; // If the number is not a factor, skip it
-                }
-            }
-            while(factor <= number);
-            
-            if(factorCount == 1){ // The input is a prime number
-                System.out.println("This is a prime number; it has no factors other than 1 and itself.");
-            }
-            else{ // Print factors found from input
-                System.out.println(message);
             }
         }
     } // End of smallestFactorsOfIntegerDoWhile method
 
-    public static void displaySortedNumbers(double num1, double num2, double num3){
-        // 6 possibilities
-        if(num1 >= num2 && num1 >= num3){ // num1 is greatest
-            if(num2 >= num3){
-                System.out.println(num3 + " " + num2 + " " + num1); // num3 is least
+    public static void displaySortedNumbers(double... numbers){
+        double[] sorted = new double[numbers.length];
+
+        System.out.println("Sorted numbers: ");
+        for(int i = 0; i < numbers.length; i++){
+            int minIndex = i;
+            for(int j = i; j < numbers.length; j++){
+                if(numbers[j] < numbers[minIndex]){
+                    minIndex = j;
+                }
             }
-            else if(num3 > num2){
-                System.out.println(num2 + " " + num3 + " " + num1); // num2 is least
-            }
-        }
-        else if(num1 < num2 && num1 < num3){ // num 1 is the least
-            if(num2 >= num3){
-                System.out.println(num1 + " " + num3 + " " + num2); // num2 is the greatest
-            }
-            else if(num3 > num2){
-                System.out.println(num1 + " " + num2 + " " + num3); // num3 is the greatest
-            }
-        }
-        else if(num1 <= num2 && num1 >= num3){ // num 1 is between num3 and num2
-            System.out.println(num3 + " " + num1 + " " + num2);
-        }
-        else { // num 1 is between num2 and num3          
-            System.out.println(num2 + " " + num1 + " " + num3);
+            sorted[i] = numbers[minIndex];
+            numbers[minIndex] = numbers[i];
+            System.out.print(sorted[i] + " ");
         }
     } // End of displaySortedNumbers method
 }
