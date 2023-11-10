@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Lab_06_01 {
     public static void main(String[] args) {
         // Problem 1
-        reverseStringWhile();
-        reverseStringDoWhile();
+        //reverseStringWhile();
+        //reverseStringDoWhile();
         
         // Problem 2
         //smallestNumberFor();
@@ -15,7 +15,7 @@ public class Lab_06_01 {
         //largestNumberDoWhile();
 
         // Problem 3
-        //smallestFactorsOfIntegerFor();
+        smallestFactorsOfIntegerFor();
         //smallestFactorsOfIntegerDoWhile();
 
         // Problem 4

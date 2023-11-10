@@ -10,10 +10,10 @@ public class Lab_06_02 {
         
         //displayReversedInteger(1234532);
 
-        //displaySortedNumbers(1.0, 1.5, 2.0);
+        displaySortedNumbers(5.5, 1.5, 2.0);
 
         //celsiusToFahrenheitTable();
-        fahrenheitToCelsiusTable();
+        //fahrenheitToCelsiusTable();
     }
 
     public static int sumDigits(long number){

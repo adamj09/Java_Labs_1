@@ -6,8 +6,8 @@ public class Lab21 {
     public static void main(String[] args) {
         //milesToKilometers();
         //volumeOfEquilateralTriangleBasePyramid();
-        calculateTips();
-        //productOfDigitsInInteger();
+        //calculateTips();
+        productOfDigitsInInteger();
         //minimumRunwayLength();
     } // End of main method
     

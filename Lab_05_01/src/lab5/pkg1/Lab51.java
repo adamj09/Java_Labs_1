@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Lab51 {
     public static void main(String[] args) {
-        //countSignsAndAverage();
+        countSignsAndAverage();
         //milesToKilometersTable();
-        computeFutureTuition();
+        //computeFutureTuition();
         //numbersDivisibleBy5or6();
         //pyramidOfNumbers();
     }

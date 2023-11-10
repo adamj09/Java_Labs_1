@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Lab42 {
     public static void main(String[] args) {
         //stringMethodsTest();
-        //compareStringsTest();
+        compareStringsTest();
         //halvesOfString();
         //findCharTest();
-        printfTest();
+        //printfTest();
     }
     
     public static void stringMethodsTest(){

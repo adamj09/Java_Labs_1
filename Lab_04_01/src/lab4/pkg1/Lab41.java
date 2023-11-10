@@ -7,10 +7,10 @@ public class Lab41 {
         //asciiToCharacter();
         //charToUnicode();
         //decimalToHex();
-        //hexToBinary();
+        hexToBinary();
         //isVowelOrConsonant();
         //telephoneLetterToNumber();
-        randomLetter();
+        //randomLetter();
     } // End of main method
     
     public static void asciiToCharacter(){

@@ -6,7 +6,7 @@ public class Lab22 {
     public static void main(String[] args) {
         //tableOfPowersWithLoop();
         //displayTimeWithMinutes();
-        //tableOfPowers();
+        tableOfPowers();
         //futureInvestmentValue();
     } // End of main method
     

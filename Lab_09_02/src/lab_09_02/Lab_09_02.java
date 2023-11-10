@@ -23,7 +23,7 @@ public class Lab_09_02 {
         //smallestFactorsOfIntegerFor(); // 9 6.1 question 3
         //smallestFactorsOfIntegerDoWhile(); // 9 6.1 question 3
 
-        displaySortedNumbers(2, 3, 1); // 10 6.2 question 5
+        displaySortedNumbers(2, 3, 1, -7, 43, 6, 3, 5); // 10 6.2 question 5
     }
 
     public static void productOfDigitsInInteger(){
@@ -48,7 +48,7 @@ public class Lab_09_02 {
     public static void tableOfPowers(){
         int[] aValues = new int[5];
         for(int i = 0; i < aValues.length; i++){
-            aValues[i] = i;
+            aValues[i] = i + 1;
         }
 
         System.out.println("a\tb\tpow(a, b)");
@@ -97,7 +97,7 @@ public class Lab_09_02 {
             }
             System.out.printf("Invalid guess, number must have %d digits. Guess again.\n", DIGIT_COUNT);
         } while(true);
-        int winNum = (int)(Math.random() * (int)Math.pow(10, DIGIT_COUNT));
+        int winNum = (int)(Math.random() * ((int)Math.pow(10, DIGIT_COUNT) - Math.pow(10, DIGIT_COUNT - 1)) + Math.pow(10, DIGIT_COUNT - 1));
 
         // Extract Digits
         int[] guessDigits = new int[DIGIT_COUNT];
@@ -123,7 +123,7 @@ public class Lab_09_02 {
             System.out.println("You won $10,000!");
         }
         else if(count < DIGIT_COUNT && count > 0){
-            System.out.println("You won $1,000!"); // if all digits match all digits in the lottey number (in no particular order)
+            System.out.println("You won $1,000!"); // if some digits match digits in the lottery number
         }
         else if(count >= DIGIT_COUNT){
             System.out.println("You won $3,000!"); // if digit matches a digit in the lottery number
@@ -150,8 +150,13 @@ public class Lab_09_02 {
                     break;
                 }
             }
-            System.out.println("Invalid input; must be a valid hexadecimal digit.");
-        } while(index == hexDigits.length);
+            if(index == hexDigits.length){
+                System.out.println("Invalid input; must be a valid hexadecimal digit.");
+            }
+            else{
+                break;
+            }
+        } while(true);
 
         System.out.println("The corresponding binary value is: " + binValues[index]);
     } // End of hexToBinary method

@@ -7,8 +7,8 @@ public class Lab32 {
         //findDaysInMonth();
         //palindromeInt();
         //determineShippingCost();
-        //lottery();
-        rockPaperScissors();
+        lottery();
+        //rockPaperScissors();
     }
     
     public static void findDaysInMonth(){
