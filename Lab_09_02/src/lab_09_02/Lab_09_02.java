@@ -14,7 +14,7 @@ public class Lab_09_02 {
 
         //hexToBinary(); // 5 4.1 question 4
 
-        //findCharTest(); // 6 4.2 question 4
+        findCharTest(); // 6 4.2 question 4
 
         //countSignsAndAverage(); // 7 5.1 question 1
 
@@ -136,60 +136,28 @@ public class Lab_09_02 {
     public static void hexToBinary(){
         // Get hex digit from user
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter a hexidecimal digit: ");
-        char hexDigit = input.nextLine().charAt(0);
-        // Print binary value based on digit
-        switch(hexDigit){
-            case '0':
-                System.out.println("The binary value is 0000");
-                break;
-            case '1':
-                System.out.println("The binary value is 0001");
-                break;
-            case '2':
-                System.out.println("The binary value is 0010");
-                break;
-            case '3':
-                System.out.println("The binary value is 0011");
-                break;
-            case '4':
-                System.out.println("The binary value is 0100");
-                break;
-            case '5':
-                System.out.println("The binary value is 0101");
-                break;
-            case '6':
-                System.out.println("The binary value is 0110");
-                break;
-            case '7':
-                System.out.println("The binary value is 0111");
-                break;
-            case '8':
-                System.out.println("The binary value is 1000");
-                break;
-            case '9':
-                System.out.println("The binary value is 1001");
-                break;
-            case 'A':
-                System.out.println("The binary value is 1010");
-                break;
-            case 'B':
-                System.out.println("The binary value is 1011");
-                break;
-            case 'C':
-                System.out.println("The binary value is 1100");
-                break;
-            case 'D':
-                System.out.println("The binary value is 1101");
-                break;
-            case 'E':
-                System.out.println("The binary value is 1110");
-                break;
-            case 'F':
-                System.out.println("The binary value is 1111");
-                break;
-            default: System.out.println("Invalid input.");
-        }
+
+        char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+        String[] binValues = {"0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"};
+        int index;
+
+        do{
+            System.out.print("Enter a hexidecimal digit: ");
+            char hexDigit = Character.toUpperCase(input.nextLine().charAt(0));
+
+            for(index = 0; index < hexDigits.length; index++){
+                if(hexDigits[index] == hexDigit){
+                    break;
+                }
+            }
+            if(index == hexDigits.length){
+                System.out.println("Invalid input, must be a valid hexadecimal digit.");
+                continue;
+            }
+            break;
+        } while(true);
+
+        System.out.println("The corresponding binary value is: " + binValues[index]);
     } // End of hexToBinary method
 
     public static void findCharTest(){
