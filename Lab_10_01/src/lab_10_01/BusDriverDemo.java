@@ -25,9 +25,8 @@ public class BusDriverDemo {
 
         // Display all info
         for(int i = 0; i < drivers.length; i++){
-            System.out.printf("\nDriver %d\n", (i + 1));
-            System.out.printf("Name: %s\nID: %d\nNumber of days worked: %d\nDaily Salary: %.2f\nMonthly Salary: %.2f\n\n", 
-                drivers[i].getName(), drivers[i].getID(), drivers[i].getDaysWorked(), drivers[i].getDailySalary(), (drivers[i].getDailySalary() * drivers[i].getDaysWorked()));
-        }
+            System.out.printf("\nDriver %d\nName: %s\nID: %d\nNumber of days worked: %d\nDaily Salary: $%.2f\nMonthly Salary: $%.2f\n\n", 
+                (i + 1), drivers[i].getName(), drivers[i].getID(), drivers[i].getDaysWorked(), drivers[i].getDailySalary(), (drivers[i].getDailySalary() * drivers[i].getDaysWorked()));
+        } 
     }
 }

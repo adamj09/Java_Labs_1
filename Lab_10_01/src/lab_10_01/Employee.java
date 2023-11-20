@@ -40,6 +40,9 @@ public class Employee {
     }
 
     public double getSalary(){
-        return hourlyRate * hoursWorked;
+        if(hoursWorked > 40){ // calculate overtime
+            return (hoursWorked - 40) * (hourlyRate * 2) + (hoursWorked - (hoursWorked - 40)) * hourlyRate;
+        }
+        return hoursWorked * hourlyRate; // calculate regularly
     }
 }
