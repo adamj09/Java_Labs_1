@@ -18,24 +18,24 @@ public class BusDriver {
         return daysWorked;
     }
 
-    public double dailySalary(){
+    public double getDailySalary(){
         return dailySalary;
     }
 
-    public void setID(int newID){
-        ID = newID;
+    public void setID(int ID){
+        this.ID = ID;
     }
 
-    public void setName(String newName){
-        name = newName;
+    public void setName(String name){
+        this.name = name;
     }
 
-    public void setDaysWorked(int days){
-        daysWorked = days;
+    public void setDaysWorked(int daysWorked){
+        this.daysWorked = daysWorked;
     }
 
-    public void setDailySalary(double salary){
-        dailySalary = salary;
+    public void setDailySalary(double dailySalary){
+        this.dailySalary = dailySalary;
     }
 
     public double calcSalary(){
