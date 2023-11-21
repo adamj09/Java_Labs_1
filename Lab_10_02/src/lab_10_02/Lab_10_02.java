@@ -6,7 +6,7 @@ public class Lab_10_02 {
         //stockTest(); // Question 2
         //stopwatchTest(); // Question 3
         //fanTest(); // Question 4
-        regularPolygonTest();
+        regularPolygonTest(); // Question 5
     }
 
     public static void rectangleTest(){
@@ -74,7 +74,7 @@ public class Lab_10_02 {
 
     public static void regularPolygonTest(){
         RegularPolygon polygon1 = new RegularPolygon();
-        RegularPolygon polygon2 = new RegularPolygon(4, 4);
+        RegularPolygon polygon2 = new RegularPolygon(6, 4);
         RegularPolygon polygon3 = new RegularPolygon(10, 4, 5.6, 7.8);
 
         System.out.printf("Polygon 1:\nPerimeter: %.4f\nArea: %.4f\n", polygon1.getPerimeter(), polygon1.getArea());
