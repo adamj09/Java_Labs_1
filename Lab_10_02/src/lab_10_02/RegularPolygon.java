@@ -7,7 +7,7 @@ public class RegularPolygon {
 
     RegularPolygon(){};
 
-    RegularPolygon(int numSides, int sideLength){
+    RegularPolygon(int numSides, double sideLength){
         if(numSides >= 3){
             this.numSides = numSides;
         }
@@ -17,7 +17,7 @@ public class RegularPolygon {
         this.sideLength = Math.abs(sideLength); // use abs to make sure sideLength is positive
     }
 
-    RegularPolygon(int numSides, int sideLength, double centerX, double centerY){
+    RegularPolygon(int numSides, double sideLength, double centerX, double centerY){
         if(numSides >= 3){
             this.numSides = numSides;
         }
@@ -54,7 +54,7 @@ public class RegularPolygon {
         }
     }
 
-    public void setSideLength(int sideLength){
+    public void setSideLength(double sideLength){
         this.sideLength = Math.abs(sideLength); // use abs to make sure sideLength is positive
     }
 
