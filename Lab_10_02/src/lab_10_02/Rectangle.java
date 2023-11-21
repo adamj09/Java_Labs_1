@@ -1,7 +1,5 @@
 package lab_10_02;
 
-import java.util.Scanner;
-
 public class Rectangle {
     private double width = 1, height = 1;
 
