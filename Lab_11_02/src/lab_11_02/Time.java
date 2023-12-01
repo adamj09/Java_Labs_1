@@ -4,27 +4,21 @@ public class Time {
     private long hour, minute, second;
 
     Time(){ // Current Time
-        setTime(System.currentTimeMillis());
+        setStandardTime(System.currentTimeMillis());
     }
     
     Time(long elapsedTimeMillis){ // specify elapsed time since Jan 1, 1970
-        setTime(elapsedTimeMillis);
+        setStandardTime(elapsedTimeMillis);
     }
     
     Time(long hour, long minute, long second){
-        this.second = second;
-     
-        if(second >= 60){ // Correct time if values greater than 60 are input
-            this.second = second % 60;
-            minute += second / 60;
-        }
-        this.minute = minute;
-        
-        if(minute >= 60){ // Correct time if values greater than 60 are input
-            this.minute = minute % 60;
-            hour += minute / 60.0;
-        }
-        this.hour = (hour >= 24) ? hour % 24 : hour;
+        setStandardTime(hour * 3600000 + minute * 60000 + second * 1000);
+    }
+    
+    private void setStandardTime(long elapsedTimeMillis){
+        second = (elapsedTimeMillis / 1000) % 60;
+        minute = (elapsedTimeMillis / 60000) % 60;
+        hour = (elapsedTimeMillis / 3600000) % 24;
     }
     
     public long getHour(){
@@ -40,8 +34,6 @@ public class Time {
     }
     
     public void setTime(long elapsedTimeMillis){
-        hour = (elapsedTimeMillis / 3600000) % 24;
-        minute = (elapsedTimeMillis / 60000) % (elapsedTimeMillis / 3600000);
-        second = (elapsedTimeMillis / 1000) % (elapsedTimeMillis / 60000);
+        setStandardTime(elapsedTimeMillis);
     }
 }
