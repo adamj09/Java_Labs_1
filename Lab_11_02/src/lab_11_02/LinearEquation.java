@@ -43,7 +43,7 @@ public class LinearEquation {
     public double getX(){
         return (e * d - b * f) / (a * d - b * c);
     }
-    
+
     public double getY(){
         return (a * f - e * c) / (a * d - b * c);
     }
