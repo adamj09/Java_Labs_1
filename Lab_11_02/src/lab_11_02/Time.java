@@ -12,9 +12,19 @@ public class Time {
     }
     
     Time(long hour, long minute, long second){
-        this.hour = hour;
-        this.minute = minute;
         this.second = second;
+     
+        if(second >= 60){ // Correct time if values greater than 60 are input
+            this.second = second % 60;
+            minute += second / 60;
+        }
+        this.minute = minute;
+        
+        if(minute >= 60){ // Correct time if values greater than 60 are input
+            this.minute = minute % 60;
+            hour += minute / 60.0;
+        }
+        this.hour = (hour >= 24) ? hour % 24 : hour;
     }
     
     public long getHour(){
