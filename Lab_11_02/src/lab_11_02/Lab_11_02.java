@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Lab_11_02 {
     public static void main(String[] args) {
-        // Simple menu to run demos from
         Scanner input = new Scanner(System.in);
-        while(true){
+        
+        // Simple menu to run demos from
+        do{
             int selection;
             do{
                 System.out.printf("Enter the desired demo to run:\n1: Location class demo\n2: LinearEquation class demo\n3: Time class demo\n4: BMI class demo\n");
@@ -32,11 +33,9 @@ public class Lab_11_02 {
             }
             while(selection <= 0 || selection > 4);
             
-            System.out.println("\nDemo finished. Type \"end\" to exit the program or enter any other character to run another demo.");
-            if(input.next().toLowerCase().equalsIgnoreCase("end")){
-                break;
-            }
+            System.out.println("\nDemo complete. Type \"end\" to exit the program, or enter any other character to run another demo.");
         }
+        while(!input.next().equalsIgnoreCase("end"));
     }
 
     public static void locationDemo(){
