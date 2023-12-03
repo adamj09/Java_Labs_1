@@ -30,7 +30,7 @@ public class Lab_11_02 {
                         break;
                 }
             }
-            while(selection <= 0 || selection > 4);
+            while(selection < 1 || selection > 4);
             
             System.out.println("\nDemo complete. Type \"end\" to exit the program, or enter any other character to run another demo.");
         }
