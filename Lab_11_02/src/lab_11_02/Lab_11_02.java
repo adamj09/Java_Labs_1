@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Lab_11_02 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
         // Simple menu to run demos from
         do{
             int selection;

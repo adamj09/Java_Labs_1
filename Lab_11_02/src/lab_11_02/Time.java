@@ -15,7 +15,7 @@ public class Time {
         setStandardTime(hour * 3600000 + minute * 60000 + second * 1000);
     }
     
-    private void setStandardTime(long elapsedTimeMillis){
+    private void setStandardTime(long elapsedTimeMillis){ // convert time from ms to hr:min:s
         second = (elapsedTimeMillis / 1000) % 60;
         minute = (elapsedTimeMillis / 60000) % 60;
         hour = (elapsedTimeMillis / 3600000) % 24;
